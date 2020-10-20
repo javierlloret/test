@@ -3,5 +3,14 @@ services:
     - docker
 
 script:
-    - docker build -t javier/node .
-    - docker images javier/node
+    - docker build -t javierlloret/node .
+    - docker images javierlloret/node
+
+before_deploy:
+    - docker login -u javierlloret -p polidiaz7
+
+deploy:
+    provider: script
+    script: docker push javierlloret/node
+    on:
+        branch: main
